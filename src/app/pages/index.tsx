@@ -12,16 +12,19 @@ const Homes: NextPage = () => {
     e.preventDefault();
     const formData = new FormData();
     const fileInput = e.currentTarget.elements.namedItem('file') as HTMLInputElement;
-    
+  
     if (fileInput.files && fileInput.files.length > 0) {
       formData.append('file', fileInput.files[0]);
-
+  
       try {
         const response = await fetch('/api/upload', {
           method: 'POST',
           body: formData,
         });
-
+  
+        console.log('Response status:', response.status);
+        console.log('Response text:', await response.text());
+  
         if (response.ok) {
           const { text } = await response.json();
           setFileContent(text);
@@ -32,11 +35,14 @@ const Homes: NextPage = () => {
           setFileContent('');
         }
       } catch (error) {
+        console.error('Fetch error:', error);
         setError('An error occurred while uploading the file');
         setFileContent('');
       }
     }
   };
+  
+  
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
