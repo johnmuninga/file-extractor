@@ -12,7 +12,7 @@ const Homes: NextPage = () => {
     e.preventDefault();
     const formData = new FormData();
     const fileInput = e.currentTarget.elements.namedItem('file') as HTMLInputElement;
-  
+  //ghjhikhihu
     if (fileInput.files && fileInput.files.length > 0) {
       formData.append('file', fileInput.files[0]);
   
@@ -32,7 +32,7 @@ const Homes: NextPage = () => {
         } else {
           const errorData = await response.json();
           setError(errorData.error);
-          setFileContent('');
+          setFileContent(''); 
         }
       } catch (error) {
         console.error('Fetch error:', error);
